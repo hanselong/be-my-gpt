@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  # This is the name of our service
+  be-my-gpt:
+    # Tell Docker Compose to build the image from the Dockerfile in the current directory
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # Give the container a friendly name
+    container_name: be-my-gpt-app
+    # Map port 3333 on your local machine to port 3333 inside the container
+    ports:
+      - "3333:3333"
+    # This is the most important part for data persistence.
+    # It maps the named volume 'gpt-db-data' to the '/app/db' directory inside the container.
+    volumes:
+      - gpt-db-data:/app/db
+    # Automatically restart the container if it stops, unless manually stopped.
+    restart: unless-stopped
+
+# Define the named volume for persisting our SQLite database
+volumes:
+  gpt-db-data:

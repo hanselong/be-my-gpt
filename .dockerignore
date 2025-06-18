@@ -1,0 +1,18 @@
+# Ignore dependencies, we install them in the container
+node_modules
+
+# Ignore build output, we build it in the container
+dist
+
+# Ignore the local database file, the volume handles this
+db
+
+# Ignore Docker and Git files
+.git
+.gitignore
+Dockerfile*
+docker-compose.yml
+
+# Ignore logs and environment files
+npm-debug.log*
+.env
