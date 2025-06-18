@@ -1,0 +1,41 @@
+export const STARTER_VOCAB = [
+    'the', 'be', 'to', 'of', 'and', 'a', 'in', 'that', 'have', 'i', 'it', 'for', 'not', 'on', 'with', 'he', 'as', 
+    'you', 'do', 'at', 'this', 'but', 'his', 'by', 'from', 'they', 'we', 'say', 'her', 'she', 'or', 'an', 'will', 
+    'my', 'one', 'all', 'would', 'there', 'their', 'what', 'so', 'up', 'out', 'if', 'about', 'who', 'get', 'which', 
+    'go', 'me', 'when', 'make', 'can', 'like', 'time', 'no', 'just', 'him', 'know', 'take', 'person', 'into', 
+    'year', 'your', 'good', 'some', 'could', 'them', 'see', 'other', 'than', 'then', 'now', 'look', 'only', 
+    'come', 'its', 'over', 'think', 'also', 'back', 'after', 'use', 'two', 'how', 'our', 'work', 'first', 'well', 
+    'way', 'even', 'new', 'want', 'because', 'any', 'these', 'give', 'day', 'most', 'us', 'is', 'are', 'was', 
+    'were', 'has', 'had', 'said', 'made', 'went', 'did', 'got', 'ran', 'sat', 'chase', 'chased', 'sees', 'little',
+    'big', 'small', 'red', 'blue', 'tree', 'sun', 'moon', 'house', 'cat', 'dog', 'mat', 'under', 'man', 'woman',
+    'people', 'world', 'life', 'hand', 'part', 'child', 'eye', 'place', 'week', 'case', 'point', 'government', 
+    'company', 'number', 'group', 'problem', 'fact', 'ask', 'feel', 'try', 'leave', 'call', 'run', 'begin', 
+    'help', 'talk', 'start', 'show', 'hear', 'play', 'move', 'live', 'believe', 'hold', 'bring', 'happen', 
+    'write', 'provide', 'sit', 'stand', 'lose', 'pay', 'meet', 'include', 'continue', 'set', 'learn', 'change', 
+    'lead', 'understand', 'watch', 'follow', 'stop', 'create', 'speak', 'read', 'allow', 'add', 'spend', 'grow', 
+    'open', 'walk', 'win', 'offer', 'remember', 'love', 'consider', 'appear', 'buy', 'wait', 'serve', 'die', 
+    'send', 'expect', 'build', 'stay', 'fall', 'cut', 'reach', 'kill', 'remain'
+];
+
+export const STARTER_TRAINING_PHRASES = [
+    'the cat sat on the mat',
+    'a dog ran under the tree',
+    'the little cat is blue',
+    'the big dog is red',
+    'a cat sees the dog',
+    'the sun is big and red',
+    'the moon is big and blue',
+    'a little dog chased the cat',
+    'the cat chased a small dog',
+    'i see the sun',
+    'she sees the moon',
+    'he ran to the house',
+    'the dog sat in the red house',
+    'the cat is in the small house',
+    'i see a blue tree',
+    'the cat ran after the dog',
+    'the dog ran after the cat',
+    'i want a little cat',
+    'you have a big dog',
+    'it is a good day'
+]; 

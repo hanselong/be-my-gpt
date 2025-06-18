@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My GPT</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Be My GPT 🤖</h1>
+        <p>An interactive game to learn how GPTs work.</p>
+        <nav id="main-nav">
+            <button id="nav-step-1" class="nav-button">Step 1: Vocabulary</button>
+            <button id="nav-step-2" class="nav-button" disabled>Step 2: Training</button>
+            <button id="nav-step-3" class="nav-button" disabled>Step 3: Prompting</button>
+            <button id="nav-step-4" class="nav-button" disabled>Step 4: Inference</button>
+            <button id="reset-button">Start New Game (Reset All)</button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Step 1: Vocabulary -->
+        <section id="step-1-vocabulary" class="game-step">
+            <h2>Step 1: Define Your Vocabulary</h2>
+            <p>Enter all the tokens (words or sub-words) your AI is allowed to know. It cannot read or write any other tokens. Add tokens in batches until you're happy with your dictionary.</p>
+
+            <!-- NEW: Educational Content Box -->
+            <details class="info-box">
+                <!-- This is the part that is always visible -->
+                <summary>
+                    <h4>💡 How does a real GPT do this? (Click to expand)</h4>
+                </summary>
+                
+                <!-- This is the content that will be shown/hidden -->
+                <div class="info-box-content">
+                    <p>
+                        A real model like GPT-2 doesn't use a simple list of words like we are. Instead, it uses a 'vocabulary' of sub-word units called <strong>tokens</strong>.
+                    </p>
+                    <p>
+                        This vocabulary is built using a clever method like <strong>Byte-Pair Encoding (BPE)</strong>. The process starts with a base vocabulary of single characters and then repeatedly merges the most frequently occurring pair of tokens. For example, 't' + 'h' might merge to 'th', and later 'th' + 'e' might merge to 'the'.
+                    </p>
+                    <p>
+                        This is done until a desired vocabulary size is reached. For GPT-2, this resulted in a vocabulary of <strong>50,257 tokens</strong>. These tokens include common words, sub-words (like "ing" or "trans"), and all the base characters. This allows the model to build almost any word, even ones it's never seen, and is much more efficient.
+                    </p>
+                    <p>
+                        ➡️ You can explore the entire GPT-2 vocabulary for yourself <a href="https://huggingface.co/gpt2/resolve/main/vocab.json" target="_blank" rel="noopener noreferrer">here</a>.
+                    </p>
+                    <p>
+                        As models evolve, so do their vocabularies. The much newer GPT-4o model uses a larger and more efficient vocabulary of nearly <strong>200,000 tokens</strong> to better understand many languages and concepts.
+                    </p>
+                </div>
+            </details>
+            
+            <p>You can add your own words or tokens below, or get started instantly with a pre-defined set.</p>
+
+            <form id="vocab-form">
+                <textarea id="vocab-input" placeholder="Enter words or tokens separated by spaces, commas, or new lines... e.g., the cat sat on the mat" rows="6"></textarea>
+
+                <!-- We'll put the buttons in a container for better layout -->
+                <div class="form-buttons">
+                    <button type="submit">Add From Textbox</button>
+                    <!-- NEW: The one-click starter vocab button -->
+                    <button type="button" id="add-starter-vocab-button">Add Starter Set</button>
+                </div>
+            </form>
+            <div class="display-area">
+                <h3>Current Vocabulary (<span id="vocab-count">0</span> tokens):</h3>
+                <ul id="vocab-list"></ul>
+            </div>
+            
+            <!-- NEW: "I'm Done" Button -->
+            <button id="goto-training-button" disabled>I'm Done, Go to Training →</button>
+        </section>
+
+        <!-- Step 2: Training Data -->
+        <section id="step-2-training" class="game-step hidden">
+            <h2>Step 2: Create a Training Dataset</h2>
+            <p>Enter sentences that your AI will 'read' to learn patterns. Any words not in your vocabulary will be ignored.</p>
+            <form id="training-form">
+                <input type="text" id="training-input" placeholder="e.g., the cat is on the mat" required>
+                <!-- MODIFIED: Wrapped buttons in a container -->
+                <div class="form-buttons">
+                    <button type="submit">Add Phrase</button>
+                    <!-- NEW: The starter phrases button -->
+                    <button type="button" id="add-starter-training-button">Add Starter Phrases</button>
+                </div>
+            </form>
+            <div class="display-area">
+                <h3>Training Data:</h3>
+                <ul id="training-list">
+                    <!-- Training phrases will be added here -->
+                </ul>
+            </div>
+            <button id="goto-prompting-button">I'm Done Training, Let's Go!</button>
+        </section>
+
+        <!-- Step 3: Prompting -->
+        <section id="step-3-prompting" class="game-step hidden">
+            <h2>Step 3: Write a Prompt</h2>
+            <p>Now, write a prompt to challenge your AI (which is you!).</p>
+            <form id="prompt-form">
+                <input type="text" id="prompt-input" placeholder="e.g., the cat is" required>
+                <button type="submit">Set Prompt</button>
+            </form>
+        </section>
+
+        <!-- Step 4: Inference -->
+        <section id="step-4-inference" class="game-step hidden">
+            <h2>Step 4: You are the GPT! (Inference)</h2>
+            <p>Based on the prompt below, write a response. You must <strong>only use words from your vocabulary</strong>. Look at the training data for inspiration on what "sounds right."</p>
+            
+            <div class="inference-context">
+                <strong>PROMPT:</strong> <span id="inference-prompt"></span>
+            </div>
+
+            <form id="response-form">
+                <textarea id="response-input" rows="4" placeholder="Write your response here..."></textarea>
+                <button type="submit">Generate & Score Response</button>
+            </form>
+
+            <div class="reference-panels">
+                <div class="display-area">
+                    <h3>Your Vocabulary</h3>
+                    <ul id="inference-vocab-list"></ul>
+                </div>
+                <div class="display-area">
+                    <h3>Your Training Data</h3>
+                    <ul id="inference-training-list"></ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Step 5: Scoring -->
+        <section id="step-5-scoring" class="game-step hidden">
+            <h2>Step 5: Score Analysis</h2>
+            <div id="score-card">
+                <h3>Your Final Score: <span id="final-score"></span>/100</h3>
+                <div id="score-breakdown"></div>
+                <hr>
+                <p><strong>Your Input:</strong> "<span id="original-response"></span>"</p>
+                <p><strong>Filtered Response (Used for scoring):</strong> "<span id="filtered-response"></span>"</p>
+            </div>
+            <button id="try-again-button">Respond to Same Prompt Again</button>
+            <button id="new-prompt-button">Write a New Prompt</button>
+        </section>
+
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>

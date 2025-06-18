@@ -1,0 +1,281 @@
+:root {
+    --primary-color: #007bff;
+    --light-gray: #f4f4f4;
+    --dark-gray: #333;
+    --border-radius: 8px;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--dark-gray);
+    background-color: #fff;
+    margin: 0;
+    padding: 2rem;
+}
+
+header {
+    text-align: center;
+    border-bottom: 2px solid var(--light-gray);
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+}
+
+h1 {
+    color: var(--primary-color);
+}
+
+main {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.game-step {
+    background-color: var(--light-gray);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 2rem;
+}
+
+.hidden {
+    display: none;
+}
+
+form {
+    display: flex;
+    flex-direction: column; /* Changed from flex */
+    gap: 10px;
+    margin-bottom: 1.5rem;
+}
+
+input[type="text"], textarea {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#reset-button {
+    background-color: #dc3545;
+}
+
+.display-area {
+    background-color: white;
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    margin-top: 1rem;
+}
+
+.display-area h3 {
+    margin-top: 0;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+ul li {
+    background-color: #e9ecef;
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+}
+
+.reference-panels {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+#score-card {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    border-left: 5px solid var(--primary-color);
+}
+
+#score-breakdown p {
+    margin: 0.5rem 0;
+}
+
+/* Add these new styles to the end of public/styles.css */
+
+.info-box {
+    background-color: #eef7ff;
+    border-left: 4px solid var(--primary-color);
+    padding: 10px 20px;
+    margin: 1.5rem 0;
+    border-radius: 4px;
+}
+
+.info-box summary {
+    cursor: pointer;
+    font-weight: bold;
+    outline: none; /* Removes the focus ring on some browsers */
+}
+/* By default, browser adds a marker. We can style it or hide it. */
+/* This removes the default triangle/arrow marker */
+.info-box summary::-webkit-details-marker {
+    display: none;
+}
+.info-box summary {
+    list-style: none; /* For Firefox */
+}
+/* Add our own custom arrow for a better look */
+.info-box summary::before {
+    content: '▶'; /* Right-pointing triangle for "closed" state */
+    margin-right: 10px;
+    font-size: 0.8em;
+    display: inline-block;
+    transition: transform 0.2s;
+}
+/* Rotate the arrow when the box is open */
+.info-box[open] > summary::before {
+    transform: rotate(90deg);
+}
+
+/* Style the <h4> inside the summary to look right */
+.info-box summary h4 {
+    display: inline; /* Makes the h4 sit next to our custom arrow */
+    margin-top: 0.25rem;
+    color: var(--primary-color);
+    font-weight: normal; /* The summary tag is already bold */
+}
+
+.info-box .info-box-content {
+    padding-top: 15px; /* Add some space between the summary and the content */
+}
+
+.info-box-content p {
+    margin-bottom: 0.5rem;
+}
+
+.info-box h4 {
+    margin-top: 0.25rem;
+    color: var(--primary-color);
+}
+
+.info-box p {
+    margin-bottom: 0.5rem;
+}
+
+/* Style for the new button and its disabled state */
+#goto-training-button {
+    display: block; /* Make it take its own line */
+    width: 100%;
+    padding: 12px;
+    margin-top: 1.5rem;
+    background-color: #28a745; /* A nice green color for "go" */
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+#goto-training-button:hover {
+    background-color: #218838;
+}
+
+/* This is important for UX! */
+button:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.form-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+/* Make the buttons in the container share space */
+.form-buttons button {
+    flex-grow: 1;
+}
+
+/* NEW: Style for our new button to make it distinct */
+#add-starter-vocab-button {
+    background-color: #6c757d; /* A neutral, secondary color */
+}
+
+#add-starter-vocab-button:hover {
+    background-color: #5a6268;
+}
+
+/* Change the main submit button text to be more specific */
+#vocab-form button[type="submit"] {
+    /* No style changes needed unless you want to make it primary again */
+    background-color: var(--primary-color);
+}
+
+#main-nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+    gap: 10px;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid var(--light-gray);
+}
+
+.nav-button {
+    padding: 8px 16px;
+    border: 1px solid var(--primary-color);
+    background-color: #fff;
+    color: var(--primary-color);
+    border-radius: 20px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.nav-button:hover:not(:disabled) {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+/* Style for the currently active step button */
+.nav-button.active {
+    background-color: var(--primary-color);
+    color: #fff;
+    font-weight: bold;
+}
+
+/* Disabled state for buttons that are not yet reachable */
+.nav-button:disabled {
+    border-color: #ccc;
+    background-color: #f8f9fa;
+    color: #aaa;
+    cursor: not-allowed;
+}
+
+/* Danger style for the "Start Over" button */
+.nav-button.danger {
+    border-color: #dc3545;
+    color: #dc3545;
+}
+
+.nav-button.danger:hover {
+    background-color: #dc3545;
+    color: #fff;
+}
